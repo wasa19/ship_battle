@@ -3,6 +3,7 @@ import sys
 from random import randint
 
 pygame.font.init()
+pygame.init()
 
 FPS = 50
 W = 1000
@@ -24,6 +25,7 @@ x_sh3 = randint(0, W-40)
 dx_sh1, dx_sh2, dx_sh3 = (1, -2, 3) #скорости кораблей
 color1 = 'white'
 shoot = 0
+shoot_sound = pygame.mixer.Sound('Bomb.wav')
 
 sc = pygame.display.set_mode((W,H))
 sea_sc = pygame.Surface((W,H/2))
@@ -57,6 +59,7 @@ while 1:
 							
 	if keys[pygame.K_UP]:
 		shoot = 1 # пуля летит
+		shoot_sound.play()
 	if shoot == 1:	
 		y_bullet -= dy_bullet			
 		if y_bullet <= 0:
